@@ -2,8 +2,8 @@ package net.app.savable.config.auth.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import net.app.savable.domain.user.Role;
-import net.app.savable.domain.user.User;
+import net.app.savable.domain.Member.Role;
+import net.app.savable.domain.Member.Member;
 
 import java.util.Map;
 
@@ -73,12 +73,13 @@ public class OAuthAttributes {
                 .build();
     }
 
-    public User toEntity() {
-        return User.builder()
+    public Member toEntity() { // 처음 가입할 때, 사용
+        return Member.builder()
                 .name(name)
                 .email(email)
                 .picture(picture)
-                .role(Role.USER)
+                .role(Role.GUEST)
+                .phoneNumber(null)
                 .build();
     }
 }

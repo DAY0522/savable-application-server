@@ -2,8 +2,7 @@ package net.app.savable.config.auth;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import net.app.savable.config.auth.LoginUser;
-import net.app.savable.config.auth.dto.SessionUser;
+import net.app.savable.config.auth.dto.SessionMember;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -13,13 +12,13 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 @RequiredArgsConstructor
 @Component
-public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver{
+public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolver{
     private final HttpSession httpSession;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        boolean isLoginUserAnnotation = parameter.getParameterAnnotation(LoginUser.class) != null;
-        boolean isUserClass = SessionUser.class.equals(parameter.getParameterType());
+        boolean isLoginUserAnnotation = parameter.getParameterAnnotation(LoginMember.class) != null;
+        boolean isUserClass = SessionMember.class.equals(parameter.getParameterType());
         return isLoginUserAnnotation && isUserClass;
     }
 

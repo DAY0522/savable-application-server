@@ -1,25 +1,25 @@
-package net.app.savable.domain.user;
+package net.app.savable.domain.Member;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import net.app.savable.domain.BaseTimeEntity;
 
 @Getter
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Table(name = "app_user")
-public class User extends BaseTimeEntity {
+public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true, unique=true)
     private String email;
 
     @Column
@@ -33,7 +33,7 @@ public class User extends BaseTimeEntity {
     private String phoneNumber;
 
     @Builder
-    public User(String name, String email, String picture, Role role, String phoneNumber){
+    public Member(String name, String email, String picture, Role role, String phoneNumber){
         this.name = name;
         this.email = email;
         this.picture = picture;
@@ -41,7 +41,7 @@ public class User extends BaseTimeEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public User update(String name, String picture){
+    public Member update(String name, String picture){
         this.name = name;
         this.picture = picture;
 

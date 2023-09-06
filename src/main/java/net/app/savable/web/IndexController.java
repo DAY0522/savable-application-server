@@ -1,7 +1,7 @@
 package net.app.savable.web;
 
-import net.app.savable.config.auth.LoginUser;
-import net.app.savable.config.auth.dto.SessionUser;
+import net.app.savable.config.auth.LoginMember;
+import net.app.savable.config.auth.dto.SessionMember;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user){
-        System.out.printf("user: %s\n", user);
+    @GetMapping("/auth/sign-up")
+    public String index(Model model, @LoginMember SessionMember member){
 
-        if (user != null) {
-            model.addAttribute("userName", user.getName());
+        System.out.printf("member: %s\n", member);
+
+        if (member != null) {
+            model.addAttribute("MemberName", member.getName());
         }
         return "index";
     }
